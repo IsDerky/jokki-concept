@@ -1,0 +1,349 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jp-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-jp-serif);
+  --font-pixel: var(--font-pixel);
+  --color-sumi: var(--sumi);
+  --color-washi: var(--washi);
+  --color-bermellon: var(--bermellon);
+  --color-hinomaru: var(--hinomaru);
+  --color-neon-magenta: var(--neon-magenta);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --sumi: oklch(0.14 0.005 260);
+  --washi: oklch(0.96 0.015 85);
+  --bermellon: oklch(0.55 0.22 27);
+  --hinomaru: oklch(0.58 0.24 25);
+  --neon-magenta: oklch(0.72 0.32 350);
+  --neon-cyan: oklch(0.85 0.18 200);
+
+  --background: var(--sumi);
+  --foreground: var(--washi);
+  --card: oklch(0.18 0.008 260);
+  --card-foreground: var(--washi);
+  --popover: oklch(0.18 0.008 260);
+  --popover-foreground: var(--washi);
+  --primary: var(--bermellon);
+  --primary-foreground: var(--washi);
+  --secondary: oklch(0.22 0.01 260);
+  --secondary-foreground: var(--washi);
+  --muted: oklch(0.22 0.01 260);
+  --muted-foreground: oklch(0.62 0.02 80);
+  --accent: oklch(0.28 0.05 15);
+  --accent-foreground: var(--washi);
+  --destructive: oklch(0.6 0.24 25);
+  --border: oklch(0.28 0.01 260);
+  --input: oklch(0.24 0.01 260);
+  --ring: var(--bermellon);
+  --chart-1: var(--bermellon);
+  --chart-2: var(--neon-magenta);
+  --chart-3: var(--neon-cyan);
+  --chart-4: oklch(0.65 0.15 60);
+  --chart-5: oklch(0.5 0.1 15);
+  --radius: 0.25rem;
+  --sidebar: var(--sumi);
+  --sidebar-foreground: var(--washi);
+  --sidebar-primary: var(--bermellon);
+  --sidebar-primary-foreground: var(--washi);
+  --sidebar-accent: oklch(0.22 0.01 260);
+  --sidebar-accent-foreground: var(--washi);
+  --sidebar-border: oklch(0.28 0.01 260);
+  --sidebar-ring: var(--bermellon);
+}
+
+.dark {
+  --background: var(--sumi);
+  --foreground: var(--washi);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    background: var(--sumi);
+    color: var(--washi);
+  }
+  body {
+    @apply bg-background text-foreground;
+    background:
+      radial-gradient(ellipse at top, oklch(0.2 0.02 15 / 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom, oklch(0.18 0.02 260 / 0.3) 0%, transparent 60%),
+      var(--sumi);
+    background-attachment: fixed;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Textura de papel washi */
+.washi-texture {
+  position: relative;
+}
+.washi-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(0.4 0.02 60 / 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, oklch(0.5 0.03 40 / 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, oklch(0.35 0.02 60 / 0.05) 1.5px, transparent 1.5px);
+  background-size: 40px 40px, 60px 60px, 80px 80px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Rejilla / líneas de HUD */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, oklch(0.28 0.01 260 / 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.28 0.01 260 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Sello hanko */
+.hanko {
+  background: var(--bermellon);
+  color: var(--washi);
+  border: 2px solid var(--bermellon);
+  font-family: var(--font-jp-serif), serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow:
+    inset 0 0 0 3px oklch(0.55 0.22 27),
+    0 0 0 1px oklch(0.42 0.15 27);
+  transform: rotate(-4deg);
+}
+
+/* Separador de trazo sumi */
+.sumi-stroke {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--washi) 8%,
+    var(--washi) 92%,
+    transparent 100%);
+  height: 2px;
+  filter: blur(0.4px);
+  opacity: 0.7;
+}
+
+/* Glitch */
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 2px); }
+  80% { transform: translate(2px, -1px); }
+}
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -1px); }
+  40% { transform: translate(1px, 1px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-1px, 1px); }
+}
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--neon-magenta);
+  animation: glitch-1 3s infinite steps(3);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+.glitch::after {
+  color: var(--neon-cyan);
+  animation: glitch-2 2.5s infinite steps(3);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* Líneas de escaneo CRT */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    oklch(0 0 0 / 0.15) 3px,
+    transparent 4px
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Pulso del Hinomaru */
+@keyframes hinomaru-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+.hinomaru-pulse {
+  animation: hinomaru-pulse 6s ease-in-out infinite;
+}
+
+/* Cursor parpadeante */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Texto vertical (tategaki) */
+.tategaki {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Efecto de gota de tinta */
+@keyframes ink-drop {
+  0% { clip-path: circle(0% at 50% 50%); }
+  100% { clip-path: circle(100% at 50% 50%); }
+}
+.ink-in {
+  animation: ink-drop 1.2s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+/* Barras de ecualizador */
+@keyframes audio-bar {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+.audio-bar { animation: audio-bar 0.8s ease-in-out infinite; }
+.audio-bar-1 { animation-delay: -0.1s; }
+.audio-bar-2 { animation-delay: -0.4s; }
+.audio-bar-3 { animation-delay: -0.7s; }
+
+/* Oculta la scrollbar sin quitar el scroll */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Filtro global del modo Konami / DS */
+html.konami body {
+  filter: contrast(1.35) saturate(1.6) hue-rotate(75deg) brightness(1.05);
+  transition: filter 0.4s ease;
+}
+html.konami body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.28) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0 1px, transparent 1px 3px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+html.konami body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 40, 0, 0.35) 100%);
+}
+html.konami img {
+  image-rendering: pixelated;
+}
+html.konami *:not(iframe):not(canvas) {
+  text-rendering: geometricPrecision;
+}
+
+/* Color de selección */
+::selection {
+  background: var(--bermellon);
+  color: var(--washi);
+}
+
+/* Estilos de foco */
+:focus-visible {
+  outline: 2px solid var(--bermellon);
+  outline-offset: 2px;
+}
+
+/* Scrollbar (resto de la página) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sumi);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.28 0.01 260);
+  border: 2px solid var(--sumi);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bermellon);
+}
